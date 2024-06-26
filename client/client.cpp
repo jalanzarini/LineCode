@@ -87,7 +87,7 @@ int main() {
     std::string binaryMessage = stringToBinary(encryptedMessage);
     std::cout << "Binary message sent: " << binaryMessage << std::endl;
     
-    std::string amiMessage = amiEncode("010010");
+    std::string amiMessage = amiEncode(binaryMessage);
     std::cout << "Encoded message sent: " << amiMessage << std::endl;
 
     int xPos = 0;
