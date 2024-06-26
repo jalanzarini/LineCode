@@ -34,7 +34,7 @@ std::string stringToBinary(const std::string &text) {
 // Function to apply AMI encoding to a binary string
 std::string amiEncode(const std::string &binaryString) {
     std::string amiString;
-    bool lastMarkPositive = false;  // To alternate the mark signal
+    bool lastMarkPositive = true;  // To alternate the mark signal
 
     for (char bit : binaryString) {
         if (bit == '0') {
@@ -63,9 +63,10 @@ int main() {
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(8080);
+    serv_addr.sin_addr.s_addr = inet_addr("10.181.3.70");
 
     // Convert IPv4 and IPv6 addresses from text to binary form
-    if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
+    if(inet_pton(AF_INET, "10.181.3.70", &serv_addr.sin_addr) <= 0) {
         std::cout << "\nInvalid address/ Address not supported \n";
         return -1;
     }
@@ -86,7 +87,7 @@ int main() {
     std::string binaryMessage = stringToBinary(encryptedMessage);
     std::cout << "Binary message sent: " << binaryMessage << std::endl;
     
-    std::string amiMessage = amiEncode(binaryMessage);
+    std::string amiMessage = amiEncode("010010");
     std::cout << "Encoded message sent: " << amiMessage << std::endl;
 
     int xPos = 0;
